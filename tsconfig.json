@@ -1,0 +1,12 @@
+{
+    "compilerOptions": {
+        "lib": ["es2015"],
+        "outFile": "./out/touch.js",
+        "target": "ES5",
+        "removeComments": true
+    },
+    "files": [
+        "lib/openrct2.d.ts",
+        "src/touch.ts"
+    ]
+}

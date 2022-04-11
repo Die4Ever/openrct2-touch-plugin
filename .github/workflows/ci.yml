@@ -1,0 +1,21 @@
+name: CI
+on: [push]
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+    - name: Checkout
+      uses: actions/checkout@v3
+    - name: Aquire openrct2.d.ts
+      run: |
+        mkdir lib
+        curl -Lo lib/openrct2.d.ts https://github.com/OpenRCT2/OpenRCT2/raw/develop/distribution/openrct2.d.ts
+    - name: Install
+      run: npm install
+    - name: Build
+      run: npm run build-release
+    - name: Upload artifacts
+      uses: actions/upload-artifact@v3
+      with:
+        name: "openrct2-touch-plugin"
+        path: out/touch.js

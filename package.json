@@ -1,0 +1,30 @@
+{
+  "name": "openrct2-touch-plugin",
+  "version": "0.1.0",
+  "description": "OpenRCT2 Touch Screen controls improvements",
+  "main": "touch.js",
+  "directories": {
+    "lib": "lib"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "tsc",
+    "watch": "tsc --watch --outFile %USERPROFILE%/Documents/OpenRCT2/plugin/rctrando.js",
+    "minify": "uglifyjs --compress --mangle --output out/rctrando.min.js -- out/rctrando.js",
+    "build-release": "npm run build"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Die4Ever/openrct2-touch-plugin.git"
+  },
+  "author": "Die4Ever",
+  "license": "GPL-3.0-or-later",
+  "bugs": {
+    "url": "https://github.com/Die4Ever/openrct2-touch-plugin/issues"
+  },
+  "homepage": "https://github.com/Die4Ever/openrct2-touch-plugin#readme",
+  "devDependencies": {
+      "typescript": "^4.6.3",
+      "uglify-js": "^3.15.3"
+  }
+}
