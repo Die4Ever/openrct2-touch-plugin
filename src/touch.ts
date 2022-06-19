@@ -1,5 +1,5 @@
 const plugin_name = 'OpenRCT2 Touch Controls';
-const plugin_version = '0.1';
+const plugin_version = '0.2';
 
 console.log("              \n"+plugin_name+" v"+plugin_version
     + ", OpenRCT2 API version "+context.apiVersion+', minimum required API version is 46, recommended API version is 51'
@@ -52,63 +52,24 @@ function moveCamera(move:CoordsXY) {
     }
     last_move = move;
 
-    let center:CoordsXY = v.getCentrePosition();
-    let pos:CoordsXYZ = {
-        x: center.x,
-        y: center.y,
-        z: 24
-    }
-    console.log('moveCamera from: ', pos, ', move: ', move, ', rotation: ', v.rotation);
-    pos.x += move.x * move_amount * move_mult;
-    pos.y += move.y * move_amount * move_mult;
-    console.log('moveCamera to', pos);
-    let oldFlags = v.visibilityFlags;
-    v.scrollTo(pos);
-    v.visibilityFlags = oldFlags;
+    v.left += move.x * move_amount * move_mult;
+    v.top += move.y * move_amount * move_mult;
 }
 
 function moveUp() {
-    let v:Viewport = ui.mainViewport;
-    let moves:CoordsXY[] = [
-        {x: -1, y: -1},
-        {x: 1, y: -1},
-        {x: 1, y: 1},
-        {x: -1, y: 1}
-    ];
-    moveCamera(moves[v.rotation]);
+    moveCamera({x: 0, y: -1} as CoordsXY);
 }
 
 function moveDown() {
-    let v:Viewport = ui.mainViewport;
-    let moves:CoordsXY[] = [
-        {x: 1, y: 1},
-        {x: -1, y: 1},
-        {x: -1, y: -1},
-        {x: 1, y: -1}
-    ];
-    moveCamera(moves[v.rotation]);
+    moveCamera({x: 0, y: 1} as CoordsXY);
 }
 
 function moveLeft() {
-    let v:Viewport = ui.mainViewport;
-    let moves:CoordsXY[] = [
-        {x: 1, y: -1},
-        {x: 1, y: 1},
-        {x: -1, y: 1},
-        {x: -1, y: -1}
-    ];
-    moveCamera(moves[v.rotation]);
+    moveCamera({x: -1, y: 0} as CoordsXY);
 }
 
 function moveRight() {
-    let v:Viewport = ui.mainViewport;
-    let moves:CoordsXY[] = [
-        {x: -1, y: 1},
-        {x: -1, y: -1},
-        {x: 1, y: -1},
-        {x: 1, y: 1}
-    ];
-    moveCamera(moves[v.rotation]);
+    moveCamera({x: 1, y: 0} as CoordsXY);
 }
 
 function createCameraControlsWindow() {
